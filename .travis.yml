@@ -3,33 +3,9 @@ services:
   - docker
 
 before_install:
-  - docker build -t genovo/react-test -f ./client/Dockerfile.dev ./client
-
-script:
-  - docker run genovo/react-test npm test -- --coverage
-
-after_success:
-  - docker build -t genovo/multi-client ./client
-  - docker build -t genovo/multi-nginx ./nginx
-  - docker build -t genovo/multi-server ./server
-  - docker build -t genovo/multi-worker ./worker
-  # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take those images and push them to docker hub
-  - docker push genovo/multi-client
-  - docker push genovo/multi-nginx
-  - docker push genovo/multi-server
-  - docker push genovo/multi-worker
-
-# deploy:
-#   provider: elasticbeanstalk
-#   region: us-west-1
-#   app: multi-docker
-#   env: MultiDocker-env
-#   bucket_name: elasticbeanstalk-us-west-1-446948614406
-#   bucket_path: docker-multi
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key:
-#     secure: $AWS_SECRET_KEY
+  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in keen-snow-224312-43bc7fe4289b.json.enc -out keen-snow-224312-43bc7fe4289b.json-d
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  - gcloud auth activate-service-account --key-file service-account.json
+  - 
