@@ -16,7 +16,7 @@ before_install:
   - gcloud config set project keen-snow-224312 
   - gcloud config set compute/zone us-central1-a 	
   - gcloud container clusters get-credentials standard-cluster-1
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin #
   - docker build -t genovo/react-test -f ./client/Dockerfile.dev ./client
 
 script:
