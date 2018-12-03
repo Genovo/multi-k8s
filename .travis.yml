@@ -8,11 +8,11 @@ env:
 
 before_install:
   # - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in keen-snow-224312-43bc7fe4289b.json.enc -out keen-snow-224312-43bc7fe4289b.json-d
-  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in keen-snow-224312-43bc7fe4289b.json.enc -out keen-snow-224312-43bc7fe4289b.json-d
+  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in keen-snow-224312-43bc7fe4289b.json.enc -out keen-snow-224312-43bc7fe4289b.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
-  - gcloud auth activate-service-account --key-file=keen-snow-224312-43bc7fe4289b.json
+  - gcloud auth activate-service-account --key-file keen-snow-224312-43bc7fe4289b.json
   - gcloud config set project keen-snow-224312 
   - gcloud config set compute/zone us-central1-a 	
   - gcloud container clusters get-credentials standard-cluster-1
